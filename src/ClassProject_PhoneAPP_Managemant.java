@@ -5,10 +5,6 @@ public class ClassProject_PhoneAPP_Managemant {
 	public static void main(String[] args) {
 		int num = 0;
 		Scanner input = new Scanner(System.in);
-		// 1. APP List -> 1. APP Download
-		// 2. APP Download -> 2. APP Delete
-		// 3. APP Delete -> 3. APP Update
-		// 4. APP Update -> 4. APP List
 		while(num != 6) {
 		    System.out.println("Kim.J.B's phone APP");
 		    System.out.println("1. APP Download");
