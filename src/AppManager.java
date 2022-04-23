@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AppManager {
-	App App = new App();
+	ArrayList<App> apps = new ArrayList<App>();
 	Scanner input;
 	
 	AppManager(Scanner input){
@@ -9,59 +10,105 @@ public class AppManager {
 	}
 	
 	public void App_download() {
-		System.out.print("App order:");
-		int num1 = input.nextInt();
-		System.out.print("APP code:");
-    	App.code[num1] = input.nextInt();
-    	input.nextLine();
-    	System.out.print("APP name:");
-    	App.name[num1] = input.nextLine();
-    	System.out.print("APP capacity:");
-    	App.capacity[num1] = input.nextInt();
+		int kind = 0;
+		while(kind != 1 && kind != 2 && kind != 3 && kind != 4) {
+			System.out.println("1 for Basic  ");
+			System.out.println("2 for SNS  ");
+			System.out.println("3 for Game  ");
+			System.out.println("4 for Video  ");
+			System.out.println("Select num for App Kind (between 1 to 4) : ");
+			kind = input.nextInt();
+			if(kind == 1) {
+				App newapp = new App();
+				newapp.getUserInput(input);
+				apps.add(newapp);
+				break;
+			}
+			else if(kind == 2) {
+				App newapp = new SNSapp();
+				newapp.getUserInput(input);
+				apps.add(newapp);
+				break;
+			}
+			else if(kind == 3) {
+				App newapp = new Gameapp();
+				newapp.getUserInput(input);
+				apps.add(newapp);
+				break;
+			}
+			else if(kind == 4) {
+				App newapp = new Videoapp();
+				newapp.getUserInput(input);
+				apps.add(newapp);
+				break;
+			}
+			else {
+			
+			}
+		}
 	}
 	
 	public void App_delete()
 	{
-		System.out.print("App order:");
-		int num1 = input.nextInt();
 		System.out.print("APP code:");
 		int appcode = input.nextInt();
-		if(App.code == null) {
-			System.out.println("Any App has not been download");
-			return;
+		int index = -1;
+		for(int i = 0; i<apps.size(); i++) {
+			if(apps.get(i).getCode() == appcode) {
+				index = i;
+				break;
+			}
 		}
-		else if(App.code[num1] != appcode) {
+		if(index >= 0){
+			apps.remove(index);
+			System.out.println("the App "+ appcode +" is deleted");
+		}
+		else{
 			System.out.println("the App has not been download");
-			return;
-		}
-		else if(App.code[num1] == appcode){
-			App.code[num1] = 0; 
-			System.out.println("the App is deleted.");
 		}
 	}
 	
 	public void App_update()
 	{
-		System.out.print("App order:");
-		int num1 = input.nextInt();
 		System.out.print("APP code:");
 		int appcode = input.nextInt();
-		if(App.code[num1] == appcode) {
-			System.out.println("the App to be update is " + appcode);
-			System.out.println("Update App code data :");
-			int replace1 = input.nextInt();
-			App.code[num1] = replace1;
-		}
+		for(int i = 0; i<apps.size(); i++) {
+			App app = apps.get(i);
+			if(app.getCode() == appcode) {
+				int num = -1;
+				while(num != 5) {
+					System.out.println("** App Update Menu **");
+					System.out.println("1. Update code");
+					System.out.println("2. Update name");
+					System.out.println("3. Update capacity");
+					System.out.println("4. Exit");
+					if(num == 1) {
+						System.out.println("App code : ");
+						int code = input.nextInt();
+						app.setCode(code);
+					}
+					else if(num == 2) {
+						System.out.println("App name : ");
+						String name = input.nextLine();
+						app.setName(name);
+					}
+					else if(num == 3) {
+						System.out.println("App capacity : ");
+						int capacity = input.nextInt();
+						app.setCapacity(capacity);
+					}
+					else{
+						continue;
+					}
+				}
+			}
+		}	
 	}
 	
 	public void App_list()
 	{
-		System.out.print("App order:");
-		int num1 = input.nextInt();
-		System.out.print("APP code:");
-		int appcode = input.nextInt();
-		if(App.code[num1] == appcode) {
-			App.printInfo(num1);
+		for(int i = 0; i < apps.size(); i ++) {
+			apps.get(i).printInfo();
 		}
 	}
 
