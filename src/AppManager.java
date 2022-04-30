@@ -19,25 +19,25 @@ public class AppManager {
 			System.out.println("Select num for App Kind (between 1 to 4) : ");
 			kind = input.nextInt();
 			if(kind == 1) {
-				App newapp = new App();
+				App newapp = new App(AppKind.Basic);
 				newapp.getUserInput(input);
 				apps.add(newapp);
 				break;
 			}
 			else if(kind == 2) {
-				App newapp = new SNSapp();
+				App newapp = new SNSapp(AppKind.SNS);
 				newapp.getUserInput(input);
 				apps.add(newapp);
 				break;
 			}
 			else if(kind == 3) {
-				App newapp = new Gameapp();
+				App newapp = new Gameapp(AppKind.Game);
 				newapp.getUserInput(input);
 				apps.add(newapp);
 				break;
 			}
 			else if(kind == 4) {
-				App newapp = new Videoapp();
+				App newapp = new Videoapp(AppKind.Video);
 				newapp.getUserInput(input);
 				apps.add(newapp);
 				break;

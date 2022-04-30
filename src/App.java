@@ -10,10 +10,14 @@ public class App {
 	public App() {
 		
 	}
-	public App(int code, String name, int capacity) {
+	public App(AppKind kind, int code, String name, int capacity) {
+		this.kind = kind;
 		this.code = code;
 		this.name = name;
 		this.capacity = capacity;
+	}
+	public App(AppKind kind) {
+		this.kind = kind;
 	}
 	
 	public AppKind getKind() {
@@ -47,7 +51,23 @@ public class App {
 		this.capacity = capacity;
 	}
 	public void printInfo() {
-		System.out.println("code : " + code + " name : " + name + " capacity : " + capacity);
+		String skind = "none";
+		switch(this.kind) {
+		case Basic:
+			skind = "Basic";
+			break;
+		case SNS:
+			skind = "SNS";
+			break;
+		case Game:
+			skind = "Game";
+			break;
+		case Video:
+			skind = "Video";
+			break;
+		default:
+		}
+		System.out.println("kind : "+ skind + "code : " + code + " name : " + name + " capacity : " + capacity);
 	}
 	public void getUserInput(Scanner input) {
 		
