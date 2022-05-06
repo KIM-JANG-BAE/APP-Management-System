@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Videoapp extends App {
+public class Videoapp extends App implements AppInput{
 	
 	public Videoapp(AppKind kind) {
 		super(kind);
@@ -54,7 +54,6 @@ public class Videoapp extends App {
 			break;
 		default:
 		}
-		System.out.println("kind : "+ skind + "code : " + code + " name : " + name + " capacity : " + capacity + " supporting app name :" + subapp );
+		System.out.println("kind : "+ skind + " code : " + code + " name : " + name + " capacity : " + capacity + " supporting app name :" + subapp );
 	}
-
 }

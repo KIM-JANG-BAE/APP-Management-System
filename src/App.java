@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class App {
+public abstract class App {
 	AppKind Basic;
 	protected int code;
 	protected String name;
@@ -19,7 +19,6 @@ public class App {
 	public App(AppKind kind) {
 		this.kind = kind;
 	}
-	
 	public AppKind getKind() {
 		return kind;
 	}
@@ -50,25 +49,8 @@ public class App {
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
-	public void printInfo() {
-		String skind = "none";
-		switch(this.kind) {
-		case Basic:
-			skind = "Basic";
-			break;
-		case SNS:
-			skind = "SNS";
-			break;
-		case Game:
-			skind = "Game";
-			break;
-		case Video:
-			skind = "Video";
-			break;
-		default:
-		}
-		System.out.println("kind : "+ skind + "code : " + code + " name : " + name + " capacity : " + capacity);
-	}
+	public abstract void printInfo();
+	
 	public void getUserInput(Scanner input) {
 		
 		System.out.print("APP code:");

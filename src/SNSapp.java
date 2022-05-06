@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class SNSapp extends App {
+public class SNSapp extends App implements AppInput{
 	
 	public SNSapp(AppKind kind) {
 		super(kind);
@@ -52,6 +52,6 @@ public class SNSapp extends App {
 			break;
 		default:
 		}
-		System.out.println("kind : "+ skind + "code : " + code + " name : " + name + " capacity : " + capacity);
+		System.out.println("kind : "+ skind + " code : " + code + " name : " + name + " capacity : " + capacity);
 	}
 }

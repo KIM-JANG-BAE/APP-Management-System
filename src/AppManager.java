@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AppManager {
-	ArrayList<App> apps = new ArrayList<App>();
+	ArrayList<AppInput> apps = new ArrayList<AppInput>();
 	Scanner input;
 	
 	AppManager(Scanner input){
@@ -11,6 +11,7 @@ public class AppManager {
 	
 	public void App_download() {
 		int kind = 0;
+		AppInput newappinput;
 		while(kind != 1 && kind != 2 && kind != 3 && kind != 4) {
 			System.out.println("1 for Basic  ");
 			System.out.println("2 for SNS  ");
@@ -19,27 +20,27 @@ public class AppManager {
 			System.out.println("Select num for App Kind (between 1 to 4) : ");
 			kind = input.nextInt();
 			if(kind == 1) {
-				App newapp = new App(AppKind.Basic);
-				newapp.getUserInput(input);
-				apps.add(newapp);
+				newappinput = new Basicapp(AppKind.Basic);
+				newappinput.getUserInput(input);
+				apps.add(newappinput);
 				break;
 			}
 			else if(kind == 2) {
-				App newapp = new SNSapp(AppKind.SNS);
-				newapp.getUserInput(input);
-				apps.add(newapp);
+				newappinput = new SNSapp(AppKind.SNS);
+				newappinput.getUserInput(input);
+				apps.add(newappinput);
 				break;
 			}
 			else if(kind == 3) {
-				App newapp = new Gameapp(AppKind.Game);
-				newapp.getUserInput(input);
-				apps.add(newapp);
+				newappinput = new Gameapp(AppKind.Game);
+				newappinput.getUserInput(input);
+				apps.add(newappinput);
 				break;
 			}
 			else if(kind == 4) {
-				App newapp = new Videoapp(AppKind.Video);
-				newapp.getUserInput(input);
-				apps.add(newapp);
+				newappinput = new Videoapp(AppKind.Video);
+				newappinput.getUserInput(input);
+				apps.add(newappinput);
 				break;
 			}
 			else {
@@ -73,8 +74,8 @@ public class AppManager {
 		System.out.print("APP code:");
 		int appcode = input.nextInt();
 		for(int i = 0; i<apps.size(); i++) {
-			App app = apps.get(i);
-			if(app.getCode() == appcode) {
+			AppInput appinput = apps.get(i);
+			if(appinput.getCode() == appcode) {
 				int num = -1;
 				while(num != 5) {
 					System.out.println("** App Update Menu **");
@@ -85,24 +86,24 @@ public class AppManager {
 					if(num == 1) {
 						System.out.println("App code : ");
 						int code = input.nextInt();
-						app.setCode(code);
+						appinput.setCode(code);
 					}
 					else if(num == 2) {
 						System.out.println("App name : ");
 						String name = input.nextLine();
-						app.setName(name);
+						appinput.setName(name);
 					}
 					else if(num == 3) {
 						System.out.println("App capacity : ");
 						int capacity = input.nextInt();
-						app.setCapacity(capacity);
+						appinput.setCapacity(capacity);
 					}
 					else{
 						continue;
 					}
 				}
 			}
-		}	
+		}
 	}
 	
 	public void App_list()

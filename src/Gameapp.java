@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Gameapp extends App {
+public class Gameapp extends App implements AppInput{
 	public Gameapp(AppKind kind) {
 		super(kind);
 	}
@@ -49,6 +49,6 @@ public class Gameapp extends App {
 			break;
 		default:
 		}
-		System.out.println("kind : "+ skind + "code : " + code + " name : " + name + " capacity : " + capacity);
+		System.out.println("kind : "+ skind + " code : " + code + " name : " + name + " capacity : " + capacity);
 	}
 }
