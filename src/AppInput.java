@@ -12,4 +12,9 @@ public interface AppInput {
 	public void getUserInput(Scanner input);
 	
 	public void printInfo();
+	
+	public void setAppcode(Scanner input);
+	public void setAppname(Scanner input);
+	public void setAppcapacity(Scanner input);
+	public void setAppsub(Scanner input);
 }

@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-public class Basicapp extends App implements AppInput {
+public class Basicapp extends App{
 	
 	public Basicapp(AppKind kind) {
 		super(kind);
@@ -10,39 +10,18 @@ public class Basicapp extends App implements AppInput {
 	
 	public void getUserInput(Scanner input) {
 		
-		System.out.print("APP code:");
-    	int code = input.nextInt();
-    	this.setCode(code);
+		setAppcode(input);
     	
-    	input.nextLine();
+    	setAppname(input);
     	
-    	System.out.print("APP name:");
-    	String name = input.nextLine();
-    	this.setName(name);
-    	
-    	System.out.print("APP capacity:");
-    	int capacity = input.nextInt();	
-    	this.setCapacity(capacity);
+    	setAppcapacity(input);
 	}
 
 	public void printInfo() {
-		String skind = "none";
-		switch(this.kind) {
-		case Basic:
-			skind = "Basic";
-			break;
-		case SNS:
-			skind = "SNS";
-			break;
-		case Game:
-			skind = "Game";
-			break;
-		case Video:
-			skind = "Video";
-			break;
-		default:
-		}
+		String skind = getKindString();
 		System.out.println("kind : "+ skind + " code : " + code + " name : " + name + " capacity : " + capacity);
 	}
 
+	public void setappsub(String subapp) throws SubappFormatException {
+	}
 }

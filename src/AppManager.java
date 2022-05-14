@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AppManager {
@@ -12,39 +13,47 @@ public class AppManager {
 	public void App_download() {
 		int kind = 0;
 		AppInput newappinput;
-		while(kind != 1 && kind != 2 && kind != 3 && kind != 4) {
-			System.out.println("1 for Basic  ");
-			System.out.println("2 for SNS  ");
-			System.out.println("3 for Game  ");
-			System.out.println("4 for Video  ");
-			System.out.println("Select num for App Kind (between 1 to 4) : ");
-			kind = input.nextInt();
-			if(kind == 1) {
-				newappinput = new Basicapp(AppKind.Basic);
-				newappinput.getUserInput(input);
-				apps.add(newappinput);
-				break;
+		while(kind < 1 || kind > 4) {
+			try {
+				System.out.println("1 for Basic  ");
+				System.out.println("2 for SNS  ");
+				System.out.println("3 for Game  ");
+				System.out.println("4 for Video  ");
+				System.out.println("Select num for App Kind (between 1 to 4) : ");
+				kind = input.nextInt();
+				if(kind == 1) {
+					newappinput = new Basicapp(AppKind.Basic);
+					newappinput.getUserInput(input);
+					apps.add(newappinput);
+					break;
+				}
+				else if(kind == 2) {
+					newappinput = new SNSapp(AppKind.SNS);
+					newappinput.getUserInput(input);
+					apps.add(newappinput);
+					break;
+				}
+				else if(kind == 3) {
+					newappinput = new Gameapp(AppKind.Game);
+					newappinput.getUserInput(input);
+					apps.add(newappinput);
+					break;
+				}
+				else if(kind == 4) {
+					newappinput = new Videoapp(AppKind.Video);
+					newappinput.getUserInput(input);
+					apps.add(newappinput);
+					break;
+				}
+				else {
+				}
 			}
-			else if(kind == 2) {
-				newappinput = new SNSapp(AppKind.SNS);
-				newappinput.getUserInput(input);
-				apps.add(newappinput);
-				break;
-			}
-			else if(kind == 3) {
-				newappinput = new Gameapp(AppKind.Game);
-				newappinput.getUserInput(input);
-				apps.add(newappinput);
-				break;
-			}
-			else if(kind == 4) {
-				newappinput = new Videoapp(AppKind.Video);
-				newappinput.getUserInput(input);
-				apps.add(newappinput);
-				break;
-			}
-			else {
-			
+			catch(InputMismatchException e) {
+				System.out.println("please put an integer between 1 and 5!");
+				if(input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
 			}
 		}
 	}
@@ -53,6 +62,21 @@ public class AppManager {
 	{
 		System.out.print("APP code:");
 		int appcode = input.nextInt();
+		int index = findIndex(appcode);
+		removefromApp(index, appcode);
+	}
+	public int removefromApp(int index, int appcode) {
+		if(index >= 0){
+			apps.remove(index);
+			System.out.println("the App "+ appcode +" is deleted");
+			return 1;
+		}
+		else{
+			System.out.println("the App has not been download");
+			return -1;
+		}
+	}
+	public int findIndex(int appcode) {
 		int index = -1;
 		for(int i = 0; i<apps.size(); i++) {
 			if(apps.get(i).getCode() == appcode) {
@@ -60,13 +84,7 @@ public class AppManager {
 				break;
 			}
 		}
-		if(index >= 0){
-			apps.remove(index);
-			System.out.println("the App "+ appcode +" is deleted");
-		}
-		else{
-			System.out.println("the App has not been download");
-		}
+		return index;
 	}
 	
 	public void App_update()
@@ -74,34 +92,27 @@ public class AppManager {
 		System.out.print("APP code:");
 		int appcode = input.nextInt();
 		for(int i = 0; i<apps.size(); i++) {
-			AppInput appinput = apps.get(i);
-			if(appinput.getCode() == appcode) {
+			AppInput app = apps.get(i);
+			if(app.getCode() == appcode) {
 				int num = -1;
-				while(num != 5) {
-					System.out.println("** App Update Menu **");
-					System.out.println("1. Update code");
-					System.out.println("2. Update name");
-					System.out.println("3. Update capacity");
-					System.out.println("4. Exit");
-					if(num == 1) {
-						System.out.println("App code : ");
-						int code = input.nextInt();
-						appinput.setCode(code);
-					}
-					else if(num == 2) {
-						System.out.println("App name : ");
-						String name = input.nextLine();
-						appinput.setName(name);
-					}
-					else if(num == 3) {
-						System.out.println("App capacity : ");
-						int capacity = input.nextInt();
-						appinput.setCapacity(capacity);
-					}
-					else{
+				while(num != 4) {
+					showUpdateMenu();
+					num = input.nextInt();
+					switch(num) {
+					case 1:
+						app.setAppcode(input);
+						break;
+					case 2:
+						app.setAppname(input);
+						break;
+					case 3:
+						app.setAppcapacity(input);
+						break;
+					default:
 						continue;
 					}
 				}
+				break;
 			}
 		}
 	}
@@ -111,6 +122,32 @@ public class AppManager {
 		for(int i = 0; i < apps.size(); i ++) {
 			apps.get(i).printInfo();
 		}
+	}
+	public void setAppcode(AppInput app, Scanner input) {
+		System.out.println("App code : ");
+		int code = input.nextInt();
+		app.setCode(code);
+	}
+	
+	public void setAppname(AppInput app, Scanner input) {
+		System.out.println("App name : ");
+		String name = input.next();
+		app.setName(name);
+	}
+	public void setAppcapacity(AppInput app, Scanner input) {
+		System.out.println("App capacity : ");
+		int capacity = input.nextInt();
+		app.setCapacity(capacity);
+	}
+	
+	
+	public void showUpdateMenu() {
+		System.out.println("** App Update Menu **");
+		System.out.println("1. Update code");
+		System.out.println("2. Update name");
+		System.out.println("3. Update capacity");
+		System.out.println("4. Exit");
+		System.out.print("input number :");
 	}
 
 }

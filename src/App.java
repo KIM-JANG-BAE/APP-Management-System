@@ -1,11 +1,12 @@
 import java.util.Scanner;
 
-public abstract class App {
+public abstract class App implements AppInput{
 	AppKind Basic;
 	protected int code;
 	protected String name;
 	protected int capacity;
 	protected AppKind kind;
+	protected String subapp;
 	
 	public App() {
 		
@@ -46,9 +47,68 @@ public abstract class App {
 	public int getCapacity() {
 		return capacity;
 	}
+	public void setsubapp(String subapp) throws SubappFormatException{
+		if(!subapp.contains("@") && !subapp.equals("")) {
+			throw new SubappFormatException();
+		}
+		this.subapp = subapp;	
+	}
+	public String subapp() {
+		return subapp;
+	}
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
+	public void setAppcode(Scanner input) {
+		System.out.println("App code : ");
+		int code = input.nextInt();
+		this.setCode(code);
+	}
+	
+	public void setAppname(Scanner input) {
+		System.out.println("App name : ");
+		String name = input.next();
+		this.setName(name);
+	}
+	public void setAppcapacity(Scanner input) {
+		System.out.println("App capacity : ");
+		int capacity = input.nextInt();
+		this.setCapacity(capacity);
+	}
+	public void setAppsub(Scanner input) {
+		String namesub = "";
+		while(!namesub.contains("@")) { 
+			System.out.println("Supportinng app:");
+			namesub = input.next();
+			try {
+				this.setsubapp(namesub);
+			}
+			catch(SubappFormatException e) {
+				System.out.println("Incorrect Email Format. put the name of subapp that contains @");
+			}
+		}
+	}
+	
+	public String getKindString() {
+		String skind = "none";
+		switch(this.kind) {
+		case Basic:
+			skind = "Basic";
+			break;
+		case SNS:
+			skind = "SNS";
+			break;
+		case Game:
+			skind = "Game";
+			break;
+		case Video:
+			skind = "Video";
+			break;
+		default:
+		}
+		return skind;
+	}
+	
 	public abstract void printInfo();
 	
 	public void getUserInput(Scanner input) {
