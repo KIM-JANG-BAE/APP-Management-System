@@ -1,3 +1,4 @@
+package app;
 import java.util.Scanner;
 
 public interface AppInput {
@@ -6,7 +7,7 @@ public interface AppInput {
 	public void setCode(int code);
 	
 	public void setName(String name);
-	
+	 
 	public void setCapacity(int capacity);
 	
 	public void getUserInput(Scanner input);

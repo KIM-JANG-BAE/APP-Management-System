@@ -1,11 +1,19 @@
+package app;
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class App implements AppInput{
-	AppKind Basic;
+import exception.SubappFormatException;
+
+public abstract class App implements AppInput, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5707742383128448606L;
+	
 	protected int code;
 	protected String name;
 	protected int capacity;
-	protected AppKind kind;
+	protected AppKind kind = AppKind.Basic;
 	protected String subapp;
 	
 	public App() {
@@ -25,12 +33,6 @@ public abstract class App implements AppInput{
 	}
 	public void setKind(AppKind kind) {
 		this.kind = kind;
-	}
-	public AppKind getBasic() {
-		return Basic;
-	}
-	public void setBasic(AppKind basic) {
-		Basic = basic;
 	}
 	public int getCode() {
 		return code;

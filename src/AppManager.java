@@ -1,10 +1,22 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class AppManager {
+import app.AppInput;
+import app.AppKind;
+import app.Basicapp;
+import app.Gameapp;
+import app.SNSapp;
+import app.Videoapp;
+
+public class AppManager implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4061486018659734307L;
 	ArrayList<AppInput> apps = new ArrayList<AppInput>();
-	Scanner input;
+	transient Scanner input;
 	
 	AppManager(Scanner input){
 		this.input = input;

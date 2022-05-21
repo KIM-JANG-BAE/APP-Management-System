@@ -1,4 +1,7 @@
+package app;
 import java.util.Scanner;
+
+import exception.SubappFormatException;
 
 public abstract class SpecificApp extends App {
 	

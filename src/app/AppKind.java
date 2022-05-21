@@ -1,3 +1,4 @@
+package app;
 
 public enum AppKind {
 	Basic,

@@ -1,6 +1,9 @@
+package app;
 
 
 import java.util.Scanner;
+
+import exception.SubappFormatException;
 
 public class Basicapp extends App{
 	

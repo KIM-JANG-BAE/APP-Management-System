@@ -1,8 +1,9 @@
+package app;
 import java.util.Scanner;
 
-public class SNSapp extends SpecificApp{
+public class Videoapp extends SpecificApp{
 	
-	public SNSapp(AppKind kind) {
+	public Videoapp(AppKind kind) {
 		super(kind);
 	}
 	
@@ -14,6 +15,6 @@ public class SNSapp extends SpecificApp{
 	}
 	public void printInfo() {
 		String skind = getKindString();
-		System.out.println("kind : "+ skind + " code : " + code + " name : " + name + " capacity : " + capacity + " supporting app name :" + subapp);
+		System.out.println("kind : "+ skind + " code : " + code + " name : " + name + " capacity : " + capacity + " supporting app name :" + subapp );
 	}
 }
