@@ -1,8 +1,10 @@
+package manager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import app.App;
 import app.AppInput;
 import app.AppKind;
 import app.Basicapp;
@@ -152,6 +154,13 @@ public class AppManager implements Serializable{
 		app.setCapacity(capacity);
 	}
 	
+	public int size() {
+		return apps.size(); 
+	}
+	
+	public AppInput get(int index) {
+		return (App) apps.get(index);
+	}
 	
 	public void showUpdateMenu() {
 		System.out.println("** App Update Menu **");

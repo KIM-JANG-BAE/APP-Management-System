@@ -10,6 +10,10 @@ public interface AppInput {
 	 
 	public void setCapacity(int capacity);
 	
+	public String getName();
+	
+	public int getCapacity();
+	
 	public void getUserInput(Scanner input);
 	
 	public void printInfo();
