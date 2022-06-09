@@ -17,7 +17,7 @@ public class WindowFrame extends JFrame {
 		
 		this.appmanager = appmanager;
 		this.menuselection = new MenuSelection(this);
-		this.appadder = new AppAdder(this); 
+		this.appadder = new AppAdder(this, this.appmanager); 
 		this.appviewer = new AppViewer(this, this.appmanager);
 		
 		this.setSize(500, 300);

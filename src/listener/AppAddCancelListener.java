@@ -9,17 +9,17 @@ import gui.AppAdder;
 import gui.AppViewer;
 import gui.WindowFrame;
 
-public class ButtonAddListener implements ActionListener {
+public class AppAddCancelListener implements ActionListener {
 
 	WindowFrame frame;
 		
-	public ButtonAddListener(WindowFrame frame) {
+	public AppAddCancelListener(WindowFrame frame) {
 		this.frame = frame;
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(frame.getAppadder());
+		frame.getContentPane().add(frame.getMenuselection());
 		frame.revalidate();
 		frame.repaint();
 	}

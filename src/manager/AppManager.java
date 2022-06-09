@@ -20,9 +20,20 @@ public class AppManager implements Serializable{
 	ArrayList<AppInput> apps = new ArrayList<AppInput>();
 	transient Scanner input;
 	
-	AppManager(Scanner input){
+	public AppManager(Scanner input){
 		this.input = input;
 	}
+	
+	public void App_download(String Code, String Name, int capacity) {
+		AppInput newappinput = new Basicapp(AppKind.Basic);
+		newappinput.getUserInput(input);
+		apps.add(newappinput);
+	}
+	
+	public void App_download(AppInput newappinput) {
+		apps.add(newappinput);
+	}
+
 	
 	public void App_download() {
 		int kind = 0;
